@@ -11,6 +11,7 @@ jobs:
 
       - name: Install awscli and awsebcli
         run: |
+          brew update
           brew install awscli awsebcli
           brew upgrade
 
