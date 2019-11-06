@@ -1,4 +1,4 @@
-name: Isntall awscli and awsebcli on Mac
+name: Install awscli and awsebcli on Mac
 
 on: push
 
