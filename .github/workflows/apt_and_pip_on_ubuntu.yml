@@ -18,3 +18,8 @@ jobs:
 
       - name: Install awsebcli
         run: pip install awsebcli
+
+      - name: Check
+        run: |
+          aws --version
+          eb --version
