@@ -3,7 +3,7 @@ name: Install awscli and awsebcli on Ubuntu
 on: push
 
 jobs:
-  install:
+  test1:
     name: Install awscli and awsebcli
     runs-on: ubuntu-18.04
     steps:
