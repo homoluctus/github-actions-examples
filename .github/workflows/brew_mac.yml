@@ -10,7 +10,9 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Install awscli and awsebcli
-        run: brew install awscli awsebcli
+        run: |
+          brew install awscli awsebcli
+          brew upgrade
 
       - name: Check
         run: |
