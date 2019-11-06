@@ -1,4 +1,4 @@
-name: Test awscli and awsebcli
+name: Install awscli and awsebcli on Ubuntu
 
 on: push
 
@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Install awscli
-        run: apt install awscli
+        run: sudo apt install -y awscli
 
       - uses: actions/setup-python@master
         with:

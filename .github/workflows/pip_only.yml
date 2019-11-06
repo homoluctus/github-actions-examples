@@ -1,0 +1,17 @@
+name: Install awscli and awsebcli using pip
+
+on: push
+
+jobs:
+  install:
+    name: Install Test
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: actions/setup-python@master
+        with:
+          python-version: '3.7'
+
+      - name: Install awscli and awsebcli
+        run: pip install awscli awsebcli
