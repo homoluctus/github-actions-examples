@@ -67,3 +67,12 @@ jobs:
         run: |
           aws --version
           eb --version
+
+  jq:
+    name: Check if jq is installed
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Execute jq
+        run: jq --version
