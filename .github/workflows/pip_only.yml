@@ -14,7 +14,7 @@ jobs:
           python-version: '3.7'
 
       - name: Install awscli and awsebcli
-        run: pip install awscli awsebcli
+        run: pip install -U awscli awsebcli
 
       - name: Check
         run: |
