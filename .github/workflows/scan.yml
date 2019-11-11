@@ -34,7 +34,7 @@ jobs:
         run: docker pull ${IMAGE_NAME}
 
       - name: Scan Image
-        run: trivy -q --severity HIGH,CRITICAL --exit-code 1 ${IMAGE_NAME} | tee tmp.txt
+        run: trivy -q --severity HIGH,CRITICAL --exit-code 1 ${IMAGE_NAME} > tmp.txt
 
       - name: Create Issue
         if: failure()
@@ -43,6 +43,8 @@ jobs:
           GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pandoc tmp.txt -o tmp.html
+          sed -i "s/<pre><code>/d" tmp.html
+          sed -i "s/<\/code><\/pre>/d" tmp.html
           echo -e "Security Alert\n" > result.html
           cat tmp.html >> result.html
           sudo chown root:root /
