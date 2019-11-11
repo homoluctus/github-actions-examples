@@ -34,7 +34,7 @@ jobs:
         run: docker pull ${IMAGE_NAME}
 
       - name: Scan Image
-        run: trivy -q --severity HIGH,CRITICAL --exit-code 1 ${IMAGE_NAME} > tmp.txt
+        run: trivy -q --severity HIGH,CRITICAL --exit-code 1 ${IMAGE_NAME} | tee tmp.txt
 
       - name: Create Issue
         if: failure()
