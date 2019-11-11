@@ -43,8 +43,8 @@ jobs:
           GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pandoc tmp.txt -o tmp.html
-          sed -e "s/<pre><code>//g" tmp.html
-          sed -e "s/<\/code><\/pre>//g" tmp.html
+          sed -i "s/<pre><code>//g" tmp.html
+          sed -i "s/<\/code><\/pre>//g" tmp.html
           echo -e "Security Alert\n" > result.html
           cat tmp.html >> result.html
           sudo chown root:root /
