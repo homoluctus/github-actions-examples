@@ -1,25 +1,25 @@
-name: Install awscli and awsebcli on Ubuntu
+# name: Install awscli and awsebcli on Ubuntu
 
-on: push
+# on: push
 
-jobs:
-  test1:
-    name: Install awscli and awsebcli
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@master
+# jobs:
+#   test1:
+#     name: Install awscli and awsebcli
+#     runs-on: ubuntu-18.04
+#     steps:
+#       - uses: actions/checkout@master
 
-      - name: Install awscli
-        run: sudo apt install -y awscli
+#       - name: Install awscli
+#         run: sudo apt install -y awscli
 
-      - uses: actions/setup-python@master
-        with:
-          python-version: '3.7'
+#       - uses: actions/setup-python@master
+#         with:
+#           python-version: '3.7'
 
-      - name: Install awsebcli
-        run: pip install awsebcli
+#       - name: Install awsebcli
+#         run: pip install awsebcli
 
-      - name: Check
-        run: |
-          aws --version
-          eb --version
+#       - name: Check
+#         run: |
+#           aws --version
+#           eb --version
