@@ -20,4 +20,4 @@ jobs:
       #     args: $IMAGE_NAME
 
       - name: trivy
-        run: docker run aquasec/trivy $IMAGE_NAME
+        run: docker run aquasec/trivy -v /var/run/docker.sock:/var/run/docker.sock $IMAGE_NAME
