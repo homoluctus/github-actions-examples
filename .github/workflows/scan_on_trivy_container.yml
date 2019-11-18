@@ -15,6 +15,9 @@ jobs:
       - name: docker image build
         run: docker build -t $IMAGE_NAME .
 
-      - uses: docker://aquasec/trivy
-        with:
-          args: $INPUT_IMAGE_NAME
+      # - uses: docker://aquasec/trivy
+      #   with:
+      #     args: $IMAGE_NAME
+
+      - name: trivy
+        run: docker run aquasec/trivy $IMAGE_NAME
