@@ -17,4 +17,4 @@ jobs:
 
       - uses: docker://aquasec/trivy
         with:
-          args: $IMAGE_NAME
+          args: $INPUT_IMAGE_NAME
