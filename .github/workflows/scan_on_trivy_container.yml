@@ -1,0 +1,18 @@
+name: Vulnerability check on trivy container
+
+on: push
+
+jobs:
+  scan:
+    name: Vulnerability check
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: docker image build
+        run: docker build -t sample .
+
+      - uses: docker://aquasec/trivy
+        with:
+          args: sample
+
