@@ -1,51 +1,33 @@
-# name: Vulnerability scan
+name: Vulnerability check
 
-# on: push
+on:
+  schedule:
+    - cron: '0 1 * * 1-5'
 
-# env:
-#   IMAGE_NAME: alpine:3.10.1
-#   GITHUB_USER: homoluctus
+jobs:
+  scan_without_issue:
+    name: vulnerability check without issue
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          ref: master
 
-# jobs:
-#   scan:
-#     name: Scan images
-#     runs-on: ubuntu-18.04
-#     steps:
-#       - uses: actions/checkout@master
-#         with:
-#           ref: master
+      - uses: homoluctus/gitrivy@v0.0.3
+        with:
+          image: alpine:3.10
+          issue: 'false'
 
-#       - name: Install commands
-#         run: |
-#           sudo apt install apt-transport-https gnupg
-#           wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
-#           echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -cs) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
-#           sudo apt update
-#           sudo apt install --no-install-recommends trivy
-#           sudo snap install hub --classic
+  scan_with_issue:
+    name: vulnerability check with issue
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          ref: master
 
-#           VERSION=$(curl --silent "https://api.github.com/repos/jgm/pandoc/releases/latest" | \
-#                     grep '"tag_name":' | \
-#                     sed -E 's/.*"([^"]+)".*/\1/')
-#           curl -L -o pandoc.deb https://github.com/jgm/pandoc/releases/download/${VERSION}/pandoc-${VERSION}-1-amd64.deb
-#           sudo dpkg -i pandoc.deb
-
-#       - name: Pull images
-#         run: docker pull ${IMAGE_NAME}
-
-#       - name: Scan Image
-#         run: trivy -q --severity HIGH,CRITICAL --exit-code 1 ${IMAGE_NAME} > tmp.txt
-
-#       - name: Create Issue
-#         if: failure()
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#           GITHUB_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-#         run: |
-#           pandoc tmp.txt -o tmp.html
-#           sed -i -e "s/<pre><code>//g" tmp.html
-#           sed -i -e "s/<\/code><\/pre>//g" tmp.html
-#           echo -e "Security Alert\n" > result.html
-#           cat tmp.html >> result.html
-#           sudo chown root:root /
-#           hub issue create -F result.html -l security
+      - uses: homoluctus/gitrivy@v0.0.3
+        with:
+          image: alpine:3.10
+          issue: 'true'
+          token: ${{ secrets.GITHUB_TOKEN }}
