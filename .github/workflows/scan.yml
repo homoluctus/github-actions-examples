@@ -31,3 +31,11 @@ jobs:
           image: alpine:3.10
           issue: 'true'
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: homolucts/slatify@master
+        if: always()
+        with:
+          type: ${{ job.status }}
+          job_name: 'Gitrivy'
+          channel: '#develop'
+          url: ${{ secrets.SLACK_WEBHOOK }}
