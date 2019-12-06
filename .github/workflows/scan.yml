@@ -32,7 +32,7 @@ jobs:
           issue: 'true'
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: homolucts/slatify@master
+      - uses: homoluctus/slatify@master
         if: always()
         with:
           type: ${{ job.status }}
