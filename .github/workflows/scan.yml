@@ -3,6 +3,9 @@ name: Vulnerability check
 on:
   schedule:
     - cron: '0 1 * * 1-5'
+  push:
+    branches:
+      - master
 
 jobs:
   scan_without_issue:
@@ -26,8 +29,9 @@ jobs:
         with:
           ref: master
 
-      - uses: homoluctus/gitrivy@v0.0.3
+      - uses: homoluctus/gitrivy@v2
         with:
+          trivy_version: 0.5.2
           image: alpine:3.10
           issue: 'true'
           token: ${{ secrets.GITHUB_TOKEN }}
