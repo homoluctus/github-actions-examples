@@ -35,11 +35,10 @@ jobs:
           image: invalid
           issue: 'true'
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: homoluctus/slatify@master
-        if: always()
+      
+      - uses: homoluctus/gitrivy@v2
         with:
-          type: ${{ job.status }}
-          job_name: 'Gitrivy'
-          channel: '#develop'
-          url: ${{ secrets.SLACK_WEBHOOK }}
+          trivy_version: 0.5.2
+          image: invalid
+          issue: 'true'
+          token: ${{ secrets.GITHUB_TOKEN }}
