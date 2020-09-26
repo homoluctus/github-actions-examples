@@ -1,0 +1,26 @@
+# name: Test slatify
+
+# on: push
+
+# jobs:
+#   homoluctus:
+#     name: Test homoluctus/slatify
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: homoluctus/slatify@master
+#         with:
+#           type: ${{ job.status }}
+#           job_name: 'homoluctus/slatify'
+#           channel: '#develop'
+#           url: ${{ secrets.SLACK_WEBHOOK }}
+
+#   lazy:
+#     name: Test lazy-actions/slatify
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: lazy-actions/slatify@master
+#         with:
+#           type: ${{ job.status }}
+#           job_name: 'lazy-actions/slatify'
+#           channel: '#develop'
+#           url: ${{ secrets.SLACK_WEBHOOK }}
