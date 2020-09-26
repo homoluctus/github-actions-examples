@@ -1,41 +1,41 @@
-name: Vulnerability check
+# name: Vulnerability check
 
-on:
-  schedule:
-    - cron: '0 1 * * 1-5'
+# on:
+#   schedule:
+#     - cron: '0 1 * * 1-5'
 
-jobs:
-  scan_without_issue:
-    name: vulnerability check without issue
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v1
-        with:
-          ref: master
+# jobs:
+#   scan_without_issue:
+#     name: vulnerability check without issue
+#     runs-on: ubuntu-18.04
+#     steps:
+#       - uses: actions/checkout@v1
+#         with:
+#           ref: master
 
-      - uses: homoluctus/gitrivy@v0.0.3
-        with:
-          image: alpine:3.10
-          issue: 'false'
+#       - uses: homoluctus/gitrivy@v0.0.3
+#         with:
+#           image: alpine:3.10
+#           issue: 'false'
 
-  scan_with_issue:
-    name: vulnerability check with issue
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v1
-        with:
-          ref: master
+#   scan_with_issue:
+#     name: vulnerability check with issue
+#     runs-on: ubuntu-18.04
+#     steps:
+#       - uses: actions/checkout@v1
+#         with:
+#           ref: master
 
-      - uses: homoluctus/gitrivy@v0.0.3
-        with:
-          image: alpine:3.10
-          issue: 'true'
-          token: ${{ secrets.GITHUB_TOKEN }}
+#       - uses: homoluctus/gitrivy@v0.0.3
+#         with:
+#           image: alpine:3.10
+#           issue: 'true'
+#           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: homoluctus/slatify@master
-        if: always()
-        with:
-          type: ${{ job.status }}
-          job_name: 'Gitrivy'
-          channel: '#develop'
-          url: ${{ secrets.SLACK_WEBHOOK }}
+#       - uses: homoluctus/slatify@master
+#         if: always()
+#         with:
+#           type: ${{ job.status }}
+#           job_name: 'Gitrivy'
+#           channel: '#develop'
+#           url: ${{ secrets.SLACK_WEBHOOK }}
