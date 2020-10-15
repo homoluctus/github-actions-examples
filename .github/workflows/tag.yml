@@ -11,6 +11,8 @@ jobs:
     name: Test tag
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Get the previous tag
         run: git describe --abbrev=0 --tags $(git rev-list --tags --max-count=1 --skip=1)
