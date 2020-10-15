@@ -15,4 +15,4 @@ jobs:
           ref: master
 
       - name: Get latest tag
-        run: git tag -l | grep -E "^ecs.[0-9]{8}\.[0-9]+" | sort -r | head -n 1
+        run: git tag -l | grep -E "^v*" | sort -r | head -n 1
