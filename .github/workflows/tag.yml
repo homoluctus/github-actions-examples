@@ -12,5 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Get latest tag
-        run: git tag -l | head -n 3
+      - name: Get the previous tag
+        run: git describe --abbrev=0 --tags $(git rev-list --tags --max-count=1 --skip=1)
+
+      - name: Get the latest tag
+        run: git describe --abbrev=0 --tags $(git rev-list --tags --max-count=1)
