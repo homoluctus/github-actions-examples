@@ -11,8 +11,6 @@ jobs:
     name: Test tag
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: master
 
       - name: Get latest tag
         run: git tag -l
