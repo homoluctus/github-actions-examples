@@ -1,0 +1,15 @@
+name: Workflow Run Trigger
+
+on:
+  workflow_run:
+    workflows:
+      - Tag
+    types:
+      - completed
+
+jobs:
+  echo:
+    name: Echo
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hello world"
