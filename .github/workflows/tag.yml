@@ -24,8 +24,3 @@ jobs:
     steps:
       - run: echo "Cancelled"
 
-  test3:
-    name: Failure
-    runs-on: ubuntu-latest
-    steps:
-      - run: exit 1
