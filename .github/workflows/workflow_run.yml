@@ -12,4 +12,4 @@ jobs:
     name: Echo
     runs-on: ubuntu-latest
     steps:
-      - run: echo "hello world"
+      - run: cat ${{ github.event_path }}
