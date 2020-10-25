@@ -12,4 +12,4 @@ jobs:
     name: Echo
     runs-on: ubuntu-latest
     steps:
-      - run: cat ${{ github.event_path }} | jq '.workflow_run.conclusion'
+      - run: cat ${{ github.event_path }} | jq -r '.workflow_run.conclusion'
